@@ -25,9 +25,6 @@ class AuthTest {
     @DisplayName("Should successfully login with active registered user")
     void shouldSuccessfulLoginIfRegisteredActiveUser() {
         var registeredUser = getRegisteredUser("active");
-        //  добавить логику теста, в рамках которого будет выполнена попытка входа в личный кабинет с учётными
-        //  данными зарегистрированного активного пользователя, для заполнения полей формы используйте
-        //  пользователя registeredUser
         Selenide.$("[data-test-id=login] input").setValue(registeredUser.getLogin());
         Selenide.$("[data-test-id=password] input").setValue(registeredUser.getPassword());
         Selenide.$("[data-test-id=action-login]").click();
@@ -38,8 +35,6 @@ class AuthTest {
     @DisplayName("Should get error message if login with not registered user")
     void shouldGetErrorIfNotRegisteredUser() {
         var notRegisteredUser = getUser("active");
-        //  добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет
-        //  незарегистрированного пользователя, для заполнения полей формы используйте пользователя notRegisteredUser
         Selenide.$("[data-test-id=login] input").setValue(notRegisteredUser.getLogin());
         Selenide.$("[data-test-id=password] input").setValue(notRegisteredUser.getPassword());
         Selenide.$("[data-test-id=action-login]").click();
@@ -50,8 +45,6 @@ class AuthTest {
     @DisplayName("Should get error message if login with blocked registered user")
     void shouldGetErrorIfBlockedUser() {
         var blockedUser = getRegisteredUser("blocked");
-        //  добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет,
-        //  заблокированного пользователя, для заполнения полей формы используйте пользователя blockedUser
         Selenide.$("[data-test-id=login] input").setValue(blockedUser.getLogin());
         Selenide.$("[data-test-id=password] input").setValue(blockedUser.getPassword());
         Selenide.$("[data-test-id=action-login]").click();
@@ -63,9 +56,6 @@ class AuthTest {
     void shouldGetErrorIfWrongLogin() {
         var registeredUser = getRegisteredUser("active");
         var wrongLogin = getRandomLogin();
-        // добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
-        //  логином, для заполнения поля формы "Логин" используйте переменную wrongLogin,
-        //  "Пароль" - пользователя registeredUser
         Selenide.$("[data-test-id=login] input").setValue(wrongLogin);
         Selenide.$("[data-test-id=password] input").setValue(registeredUser.getPassword());
         Selenide.$("[data-test-id=action-login]").click();
@@ -77,9 +67,6 @@ class AuthTest {
     void shouldGetErrorIfWrongPassword() {
         var registeredUser = getRegisteredUser("active");
         var wrongPassword = getRandomPassword();
-        //  добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
-        //  паролем, для заполнения поля формы "Логин" используйте пользователя registeredUser,
-        //  "Пароль" - переменную wrongPassword
         Selenide.$("[data-test-id=login] input").setValue(registeredUser.getLogin());
         Selenide.$("[data-test-id=password] input").setValue(wrongPassword);
         Selenide.$("[data-test-id=action-login]").click();
