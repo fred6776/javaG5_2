@@ -31,7 +31,7 @@ class AuthTest {
         Selenide.$("[data-test-id=login] input").setValue(registeredUser.getLogin());
         Selenide.$("[data-test-id=password] input").setValue(registeredUser.getPassword());
         Selenide.$("[data-test-id=action-login]").click();
-        Selenide.$(byText("Личный кабинет")).click();
+        Selenide.$(byText("Личный кабинет")).shouldBe(visible, Duration.ofSeconds(15));
     }
 
     @Test
